@@ -15,16 +15,16 @@ class BarColor
     const REBECCA_PURPLE = BossBarColor::REBECCA_PURPLE;
     const WHITE = BossBarColor::WHITE;
 
-    /** @var int[] */
-    public static array $colors = [
-        self::PINK,
-        self::BLUE,
-        self::RED,
-        self::GREEN,
-        self::YELLOW,
-        self::PURPLE,
-        self::REBECCA_PURPLE,
-        self::WHITE,
+    /** @var string[] */
+    public static array $colorNames = [
+        self::PINK => "pink",
+        self::BLUE => "blue",
+        self::RED => "red",
+        self::GREEN => "green",
+        self::YELLOW => "yellow",
+        self::PURPLE => "purple",
+        self::REBECCA_PURPLE => "rebecca_purple",
+        self::WHITE => "white",
     ];
 
     /**
@@ -34,6 +34,24 @@ class BarColor
      */
     public static function getColors(): array
     {
-        return self::$colors;
+        return array_keys(self::$colorNames);
+    }
+
+    /**
+     * Get color constant by color name.
+     *
+     * @param string $colorName
+     * @return int
+     * @throws \InvalidArgumentException
+     */
+    public static function getColorByName(string $colorName): int
+    {
+        $colorNameLower = strtolower($colorName);
+        foreach (self::$colorNames as $color => $name) {
+            if ($colorNameLower === strtolower($name)) {
+                return $color;
+            }
+        }
+        throw new \InvalidArgumentException("Invalid color name specified: " . $colorName);
     }
 }
