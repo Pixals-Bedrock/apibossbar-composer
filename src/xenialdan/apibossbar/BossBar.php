@@ -189,6 +189,11 @@ class BossBar
             return $this->color;
         }
 
+        public static function getColorByName(string $colorName): int
+        {
+            return BarColor::getColorByName($colorName);
+        }
+
 	public function setColor(int $color): static
         {
             if (!in_array($color, BarColor::getColors(), true)) {
