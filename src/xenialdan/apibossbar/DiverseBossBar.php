@@ -9,6 +9,7 @@ use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataCollection;
 use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataProperties;
 use pocketmine\network\mcpe\protocol\UpdateAttributesPacket;
 use pocketmine\player\Player;
+use xenialdan\apibossbar\BarColor;
 
 /**
  * Class DiverseBossBar
@@ -138,22 +139,25 @@ class DiverseBossBar extends BossBar
 	}
 
 	/**
-	 * @param Player[] $players
-	 * @param int      $color
-	 *
-	 * @return static
-	 */
-	public function setColorFor(array $players, int $color) : static{
-		foreach($players as $player){
-			$this->colors[$player->getId()] = $color;
-			$this->sendBossPacket([$player]);
-		}
-		return $this;
-	}
+         * @param Player[] $players
+         * @param string   $colorName
+         *
+         * @return static
+         */
+        public function setColorFor(array $players, string $colorName) : static{
+            $color = BarColor::getColorByName($colorName);
+            foreach($players as $player){
+                $this->colors[$player->getId()] = $color;
+                $this->sendBossPacket([$player]);
+            }
+            return $this;
+        }
 
-	public function getColorFor(Player $player) : int{
-		return $this->colors[$player->getId()] ?? $this->getColor();
-	}
+	public function getColorFor(Player $player): string
+        {
+            $colorId = $this->colors[$player->getId()] ?? $this->getColor();
+            return BarColor::$colorNames[$colorId] ?? "unknown";
+        }
 
 	/**
 	 * TODO: Only registered players validation
