@@ -1,0 +1,20 @@
+{
+    "name": "terpz710/apibossbar",
+    "require": {
+        "pocketmine/pocketmine-mp": "^5.0.0"
+    },
+    "authors": [
+        {
+            "name": "Terpz710"
+        }
+    ],
+    "extra": {
+        "virion": {
+            "spec": "3.0",
+            "namespace-root": "xenialdan\\apibossbar\\"
+        }
+    },
+    "autoload": {
+        "classmap": ["src"]
+    }
+}
