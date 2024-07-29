@@ -11,7 +11,7 @@
     "extra": {
         "virion": {
             "spec": "3.0",
-            "namespace-root": "xenialdan\\apibossbar\\"
+            "namespace-root": "xenialdan\\apibossbar"
         }
     },
     "autoload": {
